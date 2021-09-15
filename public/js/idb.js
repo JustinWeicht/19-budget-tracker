@@ -1,5 +1,5 @@
 let db;
-const request = indexedDB.open('budget-tracker', 1);
+const request = indexedDB.open('module-19-budget-tracker', 1);
 
 // .onupgradeneeded is used when you change the db version
 request.onupgradeneeded = (event) => {

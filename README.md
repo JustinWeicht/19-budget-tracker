@@ -14,13 +14,15 @@
   * [Questions](#questions)
 
   ## Installation 
-  - Clone this repository - Open a terminal in the root of the folder then run  npm install from the command line - Lastly, run npm start and navigate to localhost:3001 in an internet browser 
+  - Clone this repository 
+  - Open a terminal in the root of the folder then run  npm install from the command line 
+  - Lastly, run npm start and navigate to localhost:3001 in an internet browser 
 
   ## Usage
   Deployed application on Heroku: https://module-19-budget-tracker.herokuapp.com/
 
   ## License
-  This application uses the MIT license
+  This application uses the MIT license.
   
   ## Testing
   No packages were used to test this application.

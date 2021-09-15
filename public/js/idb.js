@@ -23,17 +23,17 @@ request.onerror = (event) => {
 // saveRecord() will stash data while not online
 saveRecord = (record) => {
     const transaction = db.transaction(['new_transaction'], 'readwrite');
-    const transactionObjectStore = transaction.objectStore('new_transaction');
-    transactionObjectStore.add(record);
+    const objectStore = transaction.objectStore('new_transaction');
+    objectStore.add(record);
 }
 
 // uploadTransaction() is used to upload the transaction once internet connection is reestablished
 uploadTransaction = () => {
     const transaction = db.transaction(['new_transaction'], 'readwrite');
-    const transactionObjectStore = transaction.objectStore('new_transaction');
-    const allTransactions = transactionObjectStore.getAll();
+    const objectStore = transaction.objectStore('new_transaction');
+    const allTransactions = objectStore.getAll();
 
-    // .onsuccess is used to POST if the transactionObjectStore has data
+    // .onsuccess is used to POST if the objectStore has data
     allTransactions.onsuccess = () => {
         if(allTransactions.result.length > 0) {
             fetch('/api/transaction/bulk', {
@@ -51,9 +51,9 @@ uploadTransaction = () => {
                 }
                 // make new transaction in the database
                 const transaction = db.transaction(['new_transaction'], 'readwrite');
-                const transactionObjectStore = transaction.objectStore('new_transaction');
+                const objectStore = transaction.objectStore('new_transaction');
                 // clear the transactionDataStore
-                transactionObjectStore.clear();
+                objectStore.clear();
                 alert('All saved transactions have been successfully submitted to database!')
             })
             .catch(err => console.log(err));

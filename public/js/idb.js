@@ -2,33 +2,33 @@ let db;
 const request = indexedDB.open('module-19-budget-tracker', 1);
 
 // .onupgradeneeded is used when you change the db version
-request.onupgradeneeded = (event) => {
-    const db = event.target.result;
+request.onupgradeneeded = function(e) {
+    const db = e.target.result;
     db.createObjectStore('new_transaction', { autoIncrement: true });
 }
 
 // .onsuccess, uploadTransaction if onLine
-request.onsuccess = (event) => {
-    const db = event.target.result;
+request.onsuccess = function(e) {
+    const db = e.target.result;
     if(navigator.onLine) {
         uploadTransaction();
     }
 }
 
 // .onerror to console.log() the errorCode
-request.onerror = (event) => {
-    console.log(event.target.errorCode);
+request.onerror = function(e) {
+    console.log(e.target.errorCode);
 }
 
 // saveRecord() will stash data while not online
-saveRecord = (record) => {
+function saveRecord(record) {
     const transaction = db.transaction(['new_transaction'], 'readwrite');
     const objectStore = transaction.objectStore('new_transaction');
     objectStore.add(record);
 }
 
 // uploadTransaction() is used to upload the transaction once internet connection is reestablished
-uploadTransaction = () => {
+function uploadTransaction() {
     const transaction = db.transaction(['new_transaction'], 'readwrite');
     const objectStore = transaction.objectStore('new_transaction');
     const allTransactions = objectStore.getAll();
